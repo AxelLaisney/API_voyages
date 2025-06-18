@@ -1,22 +1,37 @@
-const { PrismaClient } = require('../generated/prisma');
-const prisma = new PrismaClient();
+const prisma = require('../config/prisma');
 
 const createUsers = async () => {
-    const customerExist = await prisma.customer.findFirst({ where: { Lname: "Dupont" }});
-    if(!customerExist){
-        const customer = await prisma.customer.create({ data: { 
-            Lname: "Dupont", Fname: "Bob", Email: "Dupont.Bob@email.com", Password: "1234", Role: "USER", Registrations: [], Payments: [], Documents: []
-        }});
-    }
+    try {
+        const customerExist = await prisma.customer.findFirst({ where: { Lname: "Dupont" }});
+        if(!customerExist){
+            await prisma.customer.create({ 
+                data: { 
+                    Lname: "Dupont", 
+                    Fname: "Bob", 
+                    Email: "Dupont.Bob@email.com", 
+                    Password: "1234", 
+                    Role: "USER"
+                }
+            });
+        }
 
-    const adminExist = await prisma.customer.findFirst({ where: { Lname: "Laurent " }});
-    if(!adminExist){
-        const admin = await prisma.customer.create({ data: {
-            Lname: "Laurent", Fname: "Vincent", Email: "Laurent.Vincent@email.com", Password: "5678", Role: "ADMIN", Registrations: [], Payments: [], Documents: []
-        }})
-    }
+        const adminExist = await prisma.customer.findFirst({ where: { Lname: "Laurent" }});
+        if(!adminExist){
+            await prisma.customer.create({ 
+                data: {
+                    Lname: "Laurent", 
+                    Fname: "Vincent", 
+                    Email: "Laurent.Vincent@email.com", 
+                    Password: "5678", 
+                    Role: "ADMIN"
+                }
+            });
+        }
 
-    console.log(customer, admin);
+        console.log("Initial users created successfully");
+    } catch (error) {
+        console.error("Error creating initial users:", error);
+    }
 }
 
-module.exports = createUsers;
+module.exports = { createUsers };

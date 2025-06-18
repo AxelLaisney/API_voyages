@@ -17,8 +17,8 @@ const update = async (req, res) => {
     
 }
 
-const destory = async (req, res) => {
+const destroy = async (req, res) => {
     
 }
 
-module.exports = {getAll, getOne, create, update, destory};
+module.exports = {getAll, getOne, create, update, destroy};
