@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  ID Int @id @default(autoincrement())
+  Fname String
+  Lname String
+  Email String
+  Password String
+  Role Role @default(USER)
+  Registrations Registration[]
+  Documents Document[]
+  Payments Payment[]
+}
+
+model Trips {
+    ID Int @id @default(autoincrement())
+    Destination String
+    Places Int
+    Status Status @default(AVAILABLE)
+    Registrations Registration[] 
+}
+
+model Registration {
+    ID Int @id @default(autoincrement())
+    Flight Trips @relation(fields: [TripsID], references: [ID])
+    TripsID Int @unique
+    Customer Customer @relation(fields: [CustomerID], references: [ID])
+    CustomerID Int
+    Documents Document[]
+    Payment Payment?
+}
+
+model Payment {
+    ID Int @id @default(autoincrement())
+    Customer Customer @relation(fields: [CustomerID], references: [ID])
+    CustomerID Int
+    Registration Registration @relation(fields: [RegistrationID], references: [ID])
+    RegistrationID Int @unique
+    Montant Float
+}
+
+model Document {
+    ID Int @id @default(autoincrement())
+    Registrations Registration[]
+    Customer Customer @relation(fields: [CustomerID], references: [ID])
+    CustomerID Int
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Status {
+  AVAILABLE
+  CANCELED
+  FULL
+}
