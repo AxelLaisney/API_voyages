@@ -1,3 +1,4 @@
+const { createUsers } = require("./src/services/CreateUserDB");
 const express = require("express")
 const app = express()
 const cors = require("cors")
@@ -15,5 +16,7 @@ app.use( require('./src/router/authentificationRouter'))
 app.use( require('./src/router/paymentRouter'))
 app.use( require('./src/router/documentRouter'))
 app.use( require('./src/router/registrationRouter'))
+
+createUsers();
 
 app.listen(3000, () => console.log('Server running on port 3000'));

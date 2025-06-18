@@ -30,6 +30,7 @@ model Trips {
     Places Int
     Status Status @default(AVAILABLE)
     Registrations Registration[] 
+    Price Float
 }
 
 model Registration {
@@ -48,7 +49,7 @@ model Payment {
     CustomerID Int
     Registration Registration @relation(fields: [RegistrationID], references: [ID])
     RegistrationID Int @unique
-    Montant Float
+    Amount Float
 }
 
 model Document {
