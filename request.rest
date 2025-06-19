@@ -1,0 +1,9 @@
+@URL = http://localhost:3000/
+
+POST {{URL}}api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email" : "Dupont.Bob@email.com",
+    "password": "1234"
+}

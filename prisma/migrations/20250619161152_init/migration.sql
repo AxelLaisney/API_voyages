@@ -9,17 +9,20 @@ CREATE TABLE "Customer" (
 );
 
 -- CreateTable
-CREATE TABLE "Flight" (
+CREATE TABLE "Trips" (
     "ID" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "Destination" TEXT NOT NULL
+    "Destination" TEXT NOT NULL,
+    "Places" INTEGER NOT NULL,
+    "Status" TEXT NOT NULL DEFAULT 'AVAILABLE',
+    "Price" REAL NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "Registration" (
     "ID" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "FlightID" INTEGER NOT NULL,
+    "TripsID" INTEGER NOT NULL,
     "CustomerID" INTEGER NOT NULL,
-    CONSTRAINT "Registration_FlightID_fkey" FOREIGN KEY ("FlightID") REFERENCES "Flight" ("ID") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "Registration_TripsID_fkey" FOREIGN KEY ("TripsID") REFERENCES "Trips" ("ID") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "Registration_CustomerID_fkey" FOREIGN KEY ("CustomerID") REFERENCES "Customer" ("ID") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -28,6 +31,7 @@ CREATE TABLE "Payment" (
     "ID" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "CustomerID" INTEGER NOT NULL,
     "RegistrationID" INTEGER NOT NULL,
+    "Amount" REAL NOT NULL,
     CONSTRAINT "Payment_CustomerID_fkey" FOREIGN KEY ("CustomerID") REFERENCES "Customer" ("ID") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "Payment_RegistrationID_fkey" FOREIGN KEY ("RegistrationID") REFERENCES "Registration" ("ID") ON DELETE RESTRICT ON UPDATE CASCADE
 );
@@ -35,6 +39,7 @@ CREATE TABLE "Payment" (
 -- CreateTable
 CREATE TABLE "Document" (
     "ID" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "Type" TEXT NOT NULL,
     "CustomerID" INTEGER NOT NULL,
     CONSTRAINT "Document_CustomerID_fkey" FOREIGN KEY ("CustomerID") REFERENCES "Customer" ("ID") ON DELETE RESTRICT ON UPDATE CASCADE
 );
@@ -48,7 +53,7 @@ CREATE TABLE "_DocumentToRegistration" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Registration_FlightID_key" ON "Registration"("FlightID");
+CREATE UNIQUE INDEX "Registration_TripsID_key" ON "Registration"("TripsID");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Payment_RegistrationID_key" ON "Payment"("RegistrationID");
