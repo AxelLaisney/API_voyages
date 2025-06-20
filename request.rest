@@ -7,3 +7,8 @@ Content-Type: application/json
     "email" : "Dupont.Bob@email.com",
     "password": "1234"
 }
+
+### 
+
+GET {{URL}}api/registrations/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxLCJpYXQiOjE3NTA0MDc1NTMsImV4cCI6MTc1MDQ5Mzk1M30.dGnHTxzG6qxf5E1DKXrQK9F5ULnvK4vEvt77_UjDDmI

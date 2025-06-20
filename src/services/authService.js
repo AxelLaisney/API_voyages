@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const prisma = require("../config/prisma");
 
 const addCustomer = async (customer) => {
-    const existingCustomer = await prisma.Customer.findFirst({ where: { ID: customer.id}})
+    const existingCustomer = await prisma.Customer.findFirst({ where: { ID: customer.email}})
     if(existingCustomer){
         throw new Error("Customer already exists");
     }

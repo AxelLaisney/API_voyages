@@ -1,12 +1,15 @@
 const Router = require("express").Router()
+const { auth, isAdmin } = require('../middleware/auth');
+const validate = require('../middleware/validate');
+const { validateId, validateTripId } = require("../validators/registrationValidator");
 
-const { getAll, getOne, create, destroy } = require("../controllers/registrationController");
+const { getAll, getRegTrip, create, destroy } = require("../controllers/registrationController");
 
-Router.get("/api/registrations/me", getAll);
-Router.get("api/registrations/trip/:id", getOne);
+Router.get("/api/registrations/me", auth, getAll);
+Router.get("/api/registrations/trip/:id", auth, isAdmin, validateTripId, validate, getRegTrip);
 
-Router.post("/api/registrations/:tripId", create);
+Router.post("/api/registrations/:tripId", auth, validateTripId, validate, create);
 
-Router.delete("/api/registrations/:id", destroy);
+Router.delete("/api/registrations/:id", auth, validateTripId, validate, destroy);
 
 module.exports = Router;
