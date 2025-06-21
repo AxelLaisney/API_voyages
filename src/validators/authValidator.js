@@ -12,23 +12,23 @@ const validateLogin = [
 ];
 
 const validateSignUp = [
-    body(customer.lName)
+    body('customer.lName')
     .isString()
     .notEmpty()
     .withMessage('last name must be submitted'),
-    body(customer.fName)
+    body('customer.fName')
     .isString()
     .notEmpty()
     .withMessage('first name must be submitted'),
-    body(customer.email)
+    body('customer.email')
     .isString()
     .notEmpty()
     .withMessage('email must be submitted'),
-    body(customer.password)
+    body('customer.password')
     .isString()
     .notEmpty()
     .withMessage('password must be submitted'),
-    body(customer.role)
+    body('customer.role')
     .isString()
     .notEmpty()
     .withMessage('role must be submitted'),

@@ -1,0 +1,11 @@
+@URL = http://localhost:3000/api/payments/
+
+GET {{URL}}me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoyLCJpYXQiOjE3NTA1MTM5ODQsImV4cCI6MTc1MDYwMDM4NH0.Bm7ARoervfMtzVCdhikydYrQV-A1XNS3FNfGaaVIQlc
+###
+GET {{URL}}trip/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoyLCJpYXQiOjE3NTA1MTM5ODQsImV4cCI6MTc1MDYwMDM4NH0.Bm7ARoervfMtzVCdhikydYrQV-A1XNS3FNfGaaVIQlc
+
+###
+POST {{URL}}2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoyLCJpYXQiOjE3NTA1MTM5ODQsImV4cCI6MTc1MDYwMDM4NH0.Bm7ARoervfMtzVCdhikydYrQV-A1XNS3FNfGaaVIQlc

@@ -3,7 +3,8 @@ const { Type } = require('../generated/prisma');
 const { connect } = require('../router/documentRouter');
 
 const addDocumentsReg = async (req, res) => {
-    const regId = req.params.regId;
+    const regId = parseInt(req.params.regId);
+    console.log(req.body.type);
     const type = req.body.type;
     const document = await prisma.document.create({ data: {
         Type: type,
@@ -18,12 +19,12 @@ const addDocumentsReg = async (req, res) => {
 }
 
 const customerAddDocuments = async (req, res) => {
-    const regId = req.params.regId;
+    const regId = parseInt(req.params.regId);
     const customerId = req.customer.ID;
     const type = req.body.type
-    const document = await prisma.document.create({ date: {
+    const document = await prisma.document.create({ data: {
         Type: type,
-        customerId: customerId,
+        CustomerID: customerId,
         Registrations: {
             connect: {
                 ID: regId
@@ -55,11 +56,11 @@ const getDocuments = async (req, res) => {
 }
 
 const getDocumentsTrip = async (req, res) => {
-    const tripId = req.params.id;
+    const tripId = parseInt(req.params.id);
     const documents = await prisma.document.findMany({
         where: {
             Registrations: { 
-                some: { tripId: tripId}
+                some: { TripsID: tripId}
             }
         }
     });

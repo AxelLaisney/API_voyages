@@ -1,0 +1,41 @@
+@URL = http://localhost:3000/api/auth/
+
+POST {{URL}}login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email" : "Dupont.Bob@email.com",
+    "password": "1234"
+}
+
+###
+POST {{URL}}login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email" : "Laurent.Vincent@email.com",
+    "password": "5678"
+}
+
+###
+POST {{URL}}login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email" : "Laisney.axel@email",
+    "password": "azerty"
+}
+
+###
+POST {{URL}}signup http/1.1
+Content-Type: application/json
+
+{
+    "customer": {
+            "lName": "Laisney", 
+            "fName": "Axel", 
+            "email": "Laisney.axel@email", 
+            "password": "azerty", 
+            "role": "ADMIN"
+    }
+}

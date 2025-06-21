@@ -3,14 +3,15 @@ const bcrypt = require('bcryptjs')
 
 const getProfile = async (req, res) => {
     const customerData = req.customer;
-    const customer = await prisma.customer.findFirst({ where: { ID: customerData.id}});
+    const customer = await prisma.customer.findFirst({ where: { ID: customerData.ID}});
     res.json(customer);
 }
 
 const updateProfile = async (req, res ) => {
+    const customerId = req.customer.ID;
     const customerData = req.body
-    const newPWD = bcrypt.hash(customerData.password, 15);
-    const updatedCustomer = await prisma.customer.update({ where: { ID: customerData.id}, data: {
+    const newPWD = await bcrypt.hash(customerData.password, 15);
+    const updatedCustomer = await prisma.customer.update({ where: { ID: customerId}, data: {
                 Lname: customerData.lName, 
                 Fname: customerData.fName, 
                 Email: customerData.email, 
@@ -18,5 +19,6 @@ const updateProfile = async (req, res ) => {
     }});
     res.json(updatedCustomer)
 }
+
 
 module.exports = {getProfile, updateProfile};

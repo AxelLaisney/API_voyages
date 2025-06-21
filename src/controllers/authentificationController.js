@@ -2,11 +2,11 @@ const authService = require("../services/authService")
 
 const signUp = async (req, res) => {
     try{
-        const customer = await authService.addCustomer(req.body);
+        const customer = await authService.addCustomer(req.body.customer);
         res.status(201).json({
             message: "customer added",
             customer: {
-                id: customer.id,
+                id: customer.ID,
                 lName: customer.Lname,
                 fName: customer.Fname,
                 email: CustomElementRegistry.email,

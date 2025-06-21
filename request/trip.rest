@@ -1,0 +1,33 @@
+@URL = http://localhost:3000/
+
+GET {{URL}}api/trips
+
+###
+GET {{URL}}api/trips/1
+
+###
+POST {{URL}}api/trips
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoyLCJpYXQiOjE3NTA1MTM5ODQsImV4cCI6MTc1MDYwMDM4NH0.Bm7ARoervfMtzVCdhikydYrQV-A1XNS3FNfGaaVIQlc
+Content-Type: application/json
+
+{
+    "destination" : "Antartica",
+    "places" : 10,
+    "price" : 50
+}
+
+###
+PUT {{URL}}api/trips/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoyLCJpYXQiOjE3NTA1MTM5ODQsImV4cCI6MTc1MDYwMDM4NH0.Bm7ARoervfMtzVCdhikydYrQV-A1XNS3FNfGaaVIQlc
+Content-Type: application/json
+
+{
+    "destination" : "Antartica",
+    "places" : 5,
+    "price" : 25,
+    "status" : "FULL"
+}
+
+###
+DELETE {{URL}}api/trips/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoyLCJpYXQiOjE3NTA1MTM5ODQsImV4cCI6MTc1MDYwMDM4NH0.Bm7ARoervfMtzVCdhikydYrQV-A1XNS3FNfGaaVIQlc

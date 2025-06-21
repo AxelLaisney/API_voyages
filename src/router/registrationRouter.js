@@ -6,10 +6,10 @@ const { validateId, validateTripId } = require("../validators/registrationValida
 const { getAll, getRegTrip, create, destroy } = require("../controllers/registrationController");
 
 Router.get("/api/registrations/me", auth, getAll);
-Router.get("/api/registrations/trip/:id", auth, isAdmin, validateTripId, validate, getRegTrip);
+Router.get("/api/registrations/trip/:id", auth, isAdmin, validateId, validate, getRegTrip);
 
 Router.post("/api/registrations/:tripId", auth, validateTripId, validate, create);
 
-Router.delete("/api/registrations/:id", auth, validateTripId, validate, destroy);
+Router.delete("/api/registrations/:id", auth, validateId, validate, destroy);
 
 module.exports = Router;

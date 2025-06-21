@@ -5,9 +5,9 @@ const validateBody = require('../validators/customerValidator')
 
 const { getProfile, updateProfile } = require("../controllers/customerController");
 
-Router.get("api/user/profile", auth, getProfile);
+Router.get("/api/user/profile", auth, getProfile);
 
-Router.put("api/user/profile", auth, validateBody, validate, updateProfile);
+Router.put("/api/user/profile", validateBody, validate, auth, updateProfile);
 
 
 module.exports = Router;

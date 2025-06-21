@@ -1,22 +1,22 @@
 const { body } = require("express-validator");
 
 const validateBody = [
-    body(lName)
+    body('lName')
     .isString()
     .notEmpty()
     .withMessage('last name must be submitted'),
-    body(fName)
+    body('fName')
     .isString()
     .notEmpty()
     .withMessage('first name must be submitted'),
-    body(email)
+    body('email')
     .isString()
     .notEmpty()
     .withMessage('email must be submitted'),
-    body(customer.password)
+    body('password')
     .isString()
     .notEmpty()
     .withMessage('password must be submitted'),
 ];
 
-module.exports = { validateBody };
+module.exports = validateBody ;

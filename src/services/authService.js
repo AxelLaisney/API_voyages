@@ -3,13 +3,13 @@ const bcrypt = require('bcryptjs');
 const prisma = require("../config/prisma");
 
 const addCustomer = async (customer) => {
-    const existingCustomer = await prisma.Customer.findFirst({ where: { ID: customer.email}})
+    const existingCustomer = await prisma.customer.findFirst({ where: {Email: customer.email}});
     if(existingCustomer){
         throw new Error("Customer already exists");
     }
 
     const hashedPWD = await bcrypt.hash(customer.password, 15);
-    const Newcustomer = await prisma.Customer.create({ date: {
+    const Newcustomer = await prisma.Customer.create({ data: {
                 Lname: customer.lName, 
                 Fname: customer.fName, 
                 Email: customer.email, 

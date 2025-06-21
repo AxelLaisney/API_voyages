@@ -1,0 +1,16 @@
+@URL = http://localhost:3000/api/user/profile
+
+GET {{URL}}
+Authorization: Bearer eeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjozLCJpYXQiOjE3NTA1MjI1NjcsImV4cCI6MTc1MDYwODk2N30.4YfLWT-pqNG89lvH9q5FFdACGE9_yf9vuaous_rSaic
+
+###
+PUT {{URL}} http/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjozLCJpYXQiOjE3NTA1MjI1NjcsImV4cCI6MTc1MDYwODk2N30.4YfLWT-pqNG89lvH9q5FFdACGE9_yf9vuaous_rSaic
+Content-Type: application/json
+
+{
+    "lName" : "Laisney",
+    "fName" : "Axel",
+    "email" : "monEmail@email.com",
+    "password" : "azerty"
+}

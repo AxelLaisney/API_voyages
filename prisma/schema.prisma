@@ -36,7 +36,7 @@ model Trips {
 model Registration {
     ID Int @id @default(autoincrement())
     Trips Trips @relation(fields: [TripsID], references: [ID])
-    TripsID Int @unique
+    TripsID Int 
     Customer Customer @relation(fields: [CustomerID], references: [ID])
     CustomerID Int
     Documents Document[]
@@ -56,8 +56,8 @@ model Document {
     ID Int @id @default(autoincrement())
     Type Type
     Registrations Registration[]
-    Customer Customer @relation(fields: [CustomerID], references: [ID])
-    CustomerID Int
+    Customer Customer? @relation(fields: [CustomerID], references: [ID])
+    CustomerID Int?
 }
 
 enum Role {

@@ -1,8 +1,8 @@
 const prisma = require('../config/prisma');
 
 const addPayment = async (req, res) => {
-    const regId = req.params.regId;
-    const customerId = req.customer.regId
+    const regId = parseInt(req.params.regId);
+    const customerId = req.customer.ID
     const trip = await prisma.trips.findFirst({
         select: { 
             Price: true,
@@ -26,12 +26,16 @@ const customerPayments = async (req, res ) => {
 }
 
 const tripPayments = async (req, res ) => {
-    const tripId = req.params.id;
-    const payments = await prisma.payment.findMany({ where: {
-        Registration: { 
-            where: { tripId: tripId }
+    const tripId = parseInt(req.params.id);
+    const payments = await prisma.payment.findMany({
+        where: {
+            Registration: {
+                Trips: {
+                    ID: tripId
+                }
+            }
         }
-    }});
+    });
 
     res.json(payments);
 }
