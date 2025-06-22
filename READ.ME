@@ -1,0 +1,19 @@
+Back end of the voyage project for DIGINAMIC Formation
+Tech used: express, prisma, JWT, bcrypt, cors, express-validator
+
+Project structure:
+prisma: everything related to prisma ORM
+src/:
+    -config: helper file that makes prismaClient available easily
+    -controllers: controllers of the differents routes. Contain function relate to database calls
+    -generated: created by prisma after migration
+    -middleware: contains middleware for auth and validator
+    -router: contains the routes of the app
+    -service: contains services for the app
+    -validators: contains the validators of the app
+
+To run the app, put yourself in the folder of the project and then do these:
+npm install
+npx prisma migrate dev --name init
+
+
